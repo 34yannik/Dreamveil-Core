@@ -17,7 +17,7 @@ public class RankLogRepository {
      */
     public void logRankAction(String uuid, String playerName, PlayerRank rank, 
                             String action, LocalDateTime duration, String grantedBy) throws SQLException {
-        String query = "INSERT INTO rank_logs (uuid, player_name, rank, action, duration_days, granted_by, logged_at) " +
+        String query = "INSERT INTO rank_logs (uuid, player_name, player_rank, action, duration_days, granted_by, logged_at) " +
                 "VALUES (?, ?, ?, ?, ?, ?, NOW())";
 
         try (Connection connection = Database.getConnection();
@@ -53,7 +53,7 @@ public class RankLogRepository {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    String rankName = rs.getString("rank");
+                    String rankName = rs.getString("player_rank");
                     String action = rs.getString("action");
                     String grantedBy = rs.getString("granted_by");
                     LocalDateTime loggedAt = rs.getTimestamp("logged_at").toLocalDateTime();

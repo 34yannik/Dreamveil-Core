@@ -21,19 +21,13 @@ public class RankEventHandler implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         String uuid = player.getUniqueId().toString();
-
-        Log.info("Loading ranks for: " + player.getName());
-
         // Load ranks asynchronously
         RankService.loadRanksAsync(uuid, ranks -> {
-            Log.info("Ranks loaded for " + player.getName() + ": " + ranks.size());
-
             // Check for expired ranks
             RankService.checkExpiredRanksAsync(uuid, player.getName(), () -> {
                 // Reload to get final rank
                 RankService.loadRanksAsync(uuid, finalRanks -> {
                     String displayName = RankService.getDisplayName(uuid);
-                    Log.info("Display rank set: " + player.getName() + " -> " + displayName);
                 });
             });
         });
