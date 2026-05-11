@@ -1,0 +1,4 @@
+name: DreamveilCore
+version: '0.1.0'
+main: de.yannik.dreamveilCore.DreamveilCore
+api-version: '1.21'
