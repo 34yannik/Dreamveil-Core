@@ -24,10 +24,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class DreamveilCore extends JavaPlugin {
 
     public static String DREAMVEIL_PREFIX = GradientUtil.applyGradient(
-            "TEAM",
+            "Dreamveil",
             ChatColor.of("#C2185B"),
             ChatColor.of("#FFB6C1")
-    );
+    ) + " §8- §7";
 
     private Database database;
     private PlaytimeTask playtimeTask;

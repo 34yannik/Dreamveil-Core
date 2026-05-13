@@ -29,8 +29,22 @@ public enum PlayerRank {
             ChatColor.AQUA,
             ChatColor.BLUE,
             new Permission[] {
+                    // Team
                     Permission.TEAMLER_CHAT,
-                    Permission.TEAMLER_DUTY
+                    Permission.TEAMLER_DUTY,
+                    Permission.TEAMLER_VANISH,
+                    Permission.TEAMLER_STAFFLIST,
+                    // Utility
+                    Permission.TEAMLER_FLY,
+                    Permission.TEAMLER_SPEED,
+                    Permission.TEAMLER_GAMEMODE,
+                    Permission.TEAMLER_BACK,
+                    Permission.TEAMLER_TOP,
+                    Permission.TEAMLER_BOTTOM,
+                    Permission.TEAMLER_TP,
+                    Permission.TEAMLER_TPHERE,
+                    Permission.TEAMLER_TPPOS,
+                    Permission.TEAMLER_INVSEE
             }
     ),
 
@@ -40,8 +54,30 @@ public enum PlayerRank {
             ChatColor.GOLD,
             ChatColor.RED,
             new Permission[] {
+                    // Team
                     Permission.TEAMLER_CHAT,
-                    Permission.TEAMLER_DUTY
+                    Permission.TEAMLER_DUTY,
+                    Permission.TEAMLER_VANISH,
+                    Permission.TEAMLER_STAFFLIST,
+                    // Utility
+                    Permission.TEAMLER_FLY,
+                    Permission.TEAMLER_SPEED,
+                    Permission.TEAMLER_GAMEMODE,
+                    Permission.TEAMLER_BACK,
+                    Permission.TEAMLER_TOP,
+                    Permission.TEAMLER_BOTTOM,
+                    Permission.TEAMLER_TP,
+                    Permission.TEAMLER_TPHERE,
+                    Permission.TEAMLER_TPPOS,
+                    Permission.TEAMLER_TPALL,
+                    Permission.TEAMLER_INVSEE,
+                    // Moderation
+                    Permission.TEAMLER_BROADCAST,
+                    Permission.TEAMLER_CLEARCHAT,
+                    Permission.TEAMLER_FREEZE,
+                    // Ranks
+                    Permission.RANK_GIVE,
+                    Permission.RANK_REMOVE
             }
     ),
 
@@ -51,8 +87,32 @@ public enum PlayerRank {
             ChatColor.LIGHT_PURPLE,
             ChatColor.DARK_PURPLE,
             new Permission[] {
+                    // Team
                     Permission.TEAMLER_CHAT,
-                    Permission.TEAMLER_DUTY
+                    Permission.TEAMLER_DUTY,
+                    Permission.TEAMLER_VANISH,
+                    Permission.TEAMLER_STAFFLIST,
+                    // Utility
+                    Permission.TEAMLER_FLY,
+                    Permission.TEAMLER_SPEED,
+                    Permission.TEAMLER_GAMEMODE,
+                    Permission.TEAMLER_BACK,
+                    Permission.TEAMLER_TOP,
+                    Permission.TEAMLER_BOTTOM,
+                    Permission.TEAMLER_TP,
+                    Permission.TEAMLER_TPHERE,
+                    Permission.TEAMLER_TPPOS,
+                    Permission.TEAMLER_TPALL,
+                    Permission.TEAMLER_INVSEE,
+                    // Moderation
+                    Permission.TEAMLER_BROADCAST,
+                    Permission.TEAMLER_CLEARCHAT,
+                    Permission.TEAMLER_FREEZE,
+                    // Admin/Server diagnostics
+                    Permission.ADMIN_TPS,
+                    Permission.ADMIN_UPTIME,
+                    Permission.ADMIN_SERVERINFO,
+                    Permission.ADMIN_CLEARINVENTORY
             }
     ),
 

@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88571a91-f3d2-4b3a-9758-a12e18fbf8d4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/repository/RankLogRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/repository/RankLogRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/listener/RankEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/listener/RankEventHandler.java" afterDir="false" />
+    <list default="true" id="88571a91-f3d2-4b3a-9758-a12e18fbf8d4" name="Changes" comment="fix: wrong attribute name in RankLogRepository.java">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/DreamveilCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/DreamveilCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/rank/permission/Permission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/rank/permission/Permission.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,18 +17,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "34yannik"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;34yannik&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/34yannik/Dreamveil-Core.git",
-    "accountId": "25aa5a09-eba9-407c-b45b-1f48903e60f1"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/34yannik/Dreamveil-Core.git&quot;,
+    &quot;accountId&quot;: &quot;25aa5a09-eba9-407c-b45b-1f48903e60f1&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 6
@@ -37,17 +38,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven.DreamveilCore [package].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.DreamveilCore [package].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="mcdev-temp-root" />
@@ -99,6 +101,19 @@
       <option name="presentableId" value="Default" />
       <updated>1777636416286</updated>
     </task>
+    <task id="LOCAL-00001" summary="fix: wrong attribute name in RankLogRepository.java">
+      <option name="closed" value="true" />
+      <created>1778510550026</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1778510550026</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix: wrong attribute name in RankLogRepository.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: wrong attribute name in RankLogRepository.java" />
   </component>
 </project>
