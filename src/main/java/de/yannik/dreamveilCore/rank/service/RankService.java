@@ -7,6 +7,7 @@ import de.yannik.dreamveilCore.database.repository.RankRepository;
 import de.yannik.dreamveilCore.rank.cache.RankCache;
 import de.yannik.dreamveilCore.rank.model.PlayerRank;
 import de.yannik.dreamveilCore.rank.model.PlayerRankData;
+import de.yannik.dreamveilCore.rank.permission.Permission;
 import de.yannik.dreamveilCore.rank.util.GradientUtil;
 import de.yannik.dreamveilCore.util.Log;
 import org.bukkit.Bukkit;
@@ -202,11 +203,24 @@ public class RankService {
         if (ranks == null) return false;
 
         for (PlayerRankData rankData : ranks) {
-            if (!rankData.isExpired()) {
-                PlayerRank rank = rankData.getRank();
-                for (String perm : rank.getPermissions()) {
-                    if (permission.equals(perm) ||
-                            perm.endsWith("*") && permission.startsWith(perm.substring(0, perm.length() - 1))) {
+
+            if (rankData.isExpired()) continue;
+
+            PlayerRank rank = rankData.getRank();
+
+            for (String perm : rank.getPermissions()) {
+
+                // Exakte Permission
+                if (perm.equalsIgnoreCase(permission)) {
+                    return true;
+                }
+
+                // Wildcard prüfen
+                if (perm.endsWith("*")) {
+
+                    String base = perm.substring(0, perm.length() - 1);
+
+                    if (permission.startsWith(base)) {
                         return true;
                     }
                 }
