@@ -1,20 +1,14 @@
 package de.yannik.dreamveilCore;
 
 import de.yannik.dreamveilCore.api.DreamveilAPI;
-import de.yannik.dreamveilCore.api.service.IActivityService;
-import de.yannik.dreamveilCore.api.service.IEconomyService;
-import de.yannik.dreamveilCore.api.service.IPlayerService;
-import de.yannik.dreamveilCore.api.service.IRankService;
-import de.yannik.dreamveilCore.api.service.impl.ActivityServiceAdapter;
-import de.yannik.dreamveilCore.api.service.impl.EconomyServiceAdapter;
-import de.yannik.dreamveilCore.api.service.impl.PlayerServiceAdapter;
-import de.yannik.dreamveilCore.api.service.impl.RankServiceAdapter;
+import de.yannik.dreamveilCore.api.service.*;
+import de.yannik.dreamveilCore.api.service.impl.*;
 import de.yannik.dreamveilCore.database.Database;
 import de.yannik.dreamveilCore.database.DatabaseExecutor;
 import de.yannik.dreamveilCore.listener.PlayerEventHandler;
 import de.yannik.dreamveilCore.listener.RankEventHandler;
 import de.yannik.dreamveilCore.player.task.PlaytimeTask;
-import de.yannik.dreamveilCore.rank.util.GradientUtil;
+import de.yannik.dreamveilCore.util.GradientUtil;
 import de.yannik.dreamveilCore.util.Log;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
@@ -46,7 +40,7 @@ public final class DreamveilCore extends JavaPlugin {
             Log.info("Database initialized");
 
             // Register event listeners
-            Bukkit.getPluginManager().registerEvents(new PlayerEventHandler(playtimeTask), this);
+            Bukkit.getPluginManager().registerEvents(new PlayerEventHandler(playtimeTask, this), this);
             getServer().getPluginManager().registerEvents(new RankEventHandler(), this);
             Log.info("Event listeners registered");
 
@@ -76,15 +70,19 @@ public final class DreamveilCore extends JavaPlugin {
         IEconomyService economyService = new EconomyServiceAdapter();
         IActivityService activityService = new ActivityServiceAdapter();
         IRankService rankService = new RankServiceAdapter();
+        ISettingsService settingsService = new SettingsServiceAdapter();
+        ITitleService titleService = new TitleServiceAdapter();
 
         // Register with API
         DreamveilAPI.setPlayerService(playerService);
         DreamveilAPI.setEconomyService(economyService);
         DreamveilAPI.setActivityService(activityService);
         DreamveilAPI.setRankService(rankService);
+        DreamveilAPI.setSettingsService(settingsService);
+        DreamveilAPI.setTitleService(titleService);
 
         // Also register with Bukkit ServicesManager for plugin discovery
-        registerBukkitServices(playerService, economyService, activityService, rankService);
+        registerBukkitServices(playerService, economyService, activityService, rankService, settingsService, titleService);
     }
 
     /**
@@ -93,7 +91,9 @@ public final class DreamveilCore extends JavaPlugin {
     private void registerBukkitServices(IPlayerService playerService,
                                         IEconomyService economyService,
                                         IActivityService activityService,
-                                        IRankService rankService) {
+                                        IRankService rankService,
+                                        ISettingsService settingsService,
+                                        ITitleService titleService) {
         try {
             getServer().getServicesManager().register(
                     IPlayerService.class,
@@ -119,6 +119,20 @@ public final class DreamveilCore extends JavaPlugin {
             getServer().getServicesManager().register(
                     IRankService.class,
                     rankService,
+                    this,
+                    ServicePriority.Normal
+            );
+
+            getServer().getServicesManager().register(
+                    ISettingsService.class,
+                    settingsService,
+                    this,
+                    ServicePriority.Normal
+            );
+
+            getServer().getServicesManager().register(
+                    ITitleService.class,
+                    titleService,
                     this,
                     ServicePriority.Normal
             );

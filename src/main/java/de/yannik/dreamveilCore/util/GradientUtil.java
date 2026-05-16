@@ -1,4 +1,4 @@
-package de.yannik.dreamveilCore.rank.util;
+package de.yannik.dreamveilCore.util;
 
 import org.bukkit.ChatColor;
 

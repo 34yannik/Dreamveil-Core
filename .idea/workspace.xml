@@ -4,12 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88571a91-f3d2-4b3a-9758-a12e18fbf8d4" name="Changes" comment="Fix: RankService.hasPermission works correctly">
+    <list default="true" id="88571a91-f3d2-4b3a-9758-a12e18fbf8d4" name="Changes" comment="Added: Permissions for Wild, Feed Command">
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/service/ISettingsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/service/ITitleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/service/impl/SettingsServiceAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/service/impl/TitleServiceAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/repository/SettingsRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/repository/TitleRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/event/PlayerReadyEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/player/cache/SettingsCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/player/model/PlayerSettings.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/player/model/Title.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/player/service/SettingsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/player/service/TitleService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/DreamveilCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/DreamveilCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/DreamveilAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/DreamveilAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/Database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/listener/PlayerEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/listener/PlayerEventHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/rank/model/PlayerRank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/rank/model/PlayerRank.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/rank/permission/Permission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/rank/permission/Permission.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/util/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/util/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/rank/service/RankService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/rank/service/RankService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/rank/util/GradientUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/util/GradientUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,13 +142,22 @@
       <option name="project" value="LOCAL" />
       <updated>1778782379026</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added: Permissions for Wild, Feed Command">
+      <option name="closed" value="true" />
+      <created>1778935818270</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1778935818270</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix: wrong attribute name in RankLogRepository.java" />
     <MESSAGE value="Added: Bunch of permissions for admin plugin&#10;change: permissions of ranks" />
     <MESSAGE value="Fix: RankService.hasPermission works correctly" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix: RankService.hasPermission works correctly" />
+    <MESSAGE value="Added: Permissions for Wild, Feed Command" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added: Permissions for Wild, Feed Command" />
   </component>
 </project>

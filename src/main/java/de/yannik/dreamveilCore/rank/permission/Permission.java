@@ -41,7 +41,10 @@ public enum Permission {
     RANK_REMOVE("dreamveil.rank.remove", "Can remove normal ranks"),
     RANK_TEAM_GIVE("dreamveil.teamrank.give", "Can give team ranks"),
     RANK_TEAM_REMOVE("dreamveil.teamrank.remove", "Can remove team ranks"),
-    ALL_PERMISSIONS("dreamveil.*", "All permissions");
+    ALL_PERMISSIONS("dreamveil.*", "All permissions"),
+
+    // ==================== OTHER ====================
+    TITLES_UNLOCKALL("dreamveil.titles.unlockall", "Unlocks every title");
 
 
     private final String permission;

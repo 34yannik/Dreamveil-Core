@@ -4,6 +4,8 @@ import de.yannik.dreamveilCore.api.service.IActivityService;
 import de.yannik.dreamveilCore.api.service.IEconomyService;
 import de.yannik.dreamveilCore.api.service.IPlayerService;
 import de.yannik.dreamveilCore.api.service.IRankService;
+import de.yannik.dreamveilCore.api.service.ISettingsService;
+import de.yannik.dreamveilCore.api.service.ITitleService;
 import de.yannik.dreamveilCore.util.Log;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -16,9 +18,12 @@ import org.bukkit.plugin.Plugin;
  * <pre>
  *     IEconomyService economy = DreamveilAPI.getEconomy();
  *     if (economy != null) {
- *         economy.addBalanceAsync(uuid, 100, () -> {
- *             // done
- *         });
+ *         economy.addBalanceAsync(uuid, 100, () -> {});
+ *     }
+ *
+ *     ITitleService titles = DreamveilAPI.getTitles();
+ *     if (titles != null) {
+ *         titles.unlockAsync(uuid, Title.LEGEND, () -> {});
  *     }
  * </pre>
  *
@@ -27,49 +32,37 @@ import org.bukkit.plugin.Plugin;
  */
 public class DreamveilAPI {
 
-    private static IPlayerService playerService;
-    private static IEconomyService economyService;
+    private static IPlayerService   playerService;
+    private static IEconomyService  economyService;
     private static IActivityService activityService;
-    private static IRankService rankService;
+    private static IRankService     rankService;
+    private static ISettingsService settingsService;
+    private static ITitleService    titleService;
 
     private static final String PLUGIN_NAME = "DreamveilCore";
 
     // ==================== GETTER METHODS (Public) ====================
 
-    /**
-     * Get player service
-     * Returns null if DreamveilCore is not loaded or disabled
-     */
-    public static IPlayerService getPlayer() {
-        return playerService;
-    }
+    /** Returns null if DreamveilCore is not loaded or disabled. */
+    public static IPlayerService getPlayer()     { return playerService;   }
+
+    /** Returns null if DreamveilCore is not loaded or disabled. */
+    public static IEconomyService getEconomy()   { return economyService;  }
+
+    /** Returns null if DreamveilCore is not loaded or disabled. */
+    public static IActivityService getActivity() { return activityService; }
+
+    /** Returns null if DreamveilCore is not loaded or disabled. */
+    public static IRankService getRank()         { return rankService;     }
+
+    /** Returns null if DreamveilCore is not loaded or disabled. */
+    public static ISettingsService getSettings() { return settingsService; }
+
+    /** Returns null if DreamveilCore is not loaded or disabled. */
+    public static ITitleService getTitles()      { return titleService;    }
 
     /**
-     * Get economy service
-     * Returns null if DreamveilCore is not loaded or disabled
-     */
-    public static IEconomyService getEconomy() {
-        return economyService;
-    }
-
-    /**
-     * Get activity service
-     * Returns null if DreamveilCore is not loaded or disabled
-     */
-    public static IActivityService getActivity() {
-        return activityService;
-    }
-
-    /**
-     * Get rank service
-     * Returns null if DreamveilCore is not loaded or disabled
-     */
-    public static IRankService getRank() {
-        return rankService;
-    }
-
-    /**
-     * Check if DreamveilCore is loaded and API is available
+     * Check if DreamveilCore is loaded and API is available.
      */
     public static boolean isAvailable() {
         Plugin plugin = Bukkit.getPluginManager().getPlugin(PLUGIN_NAME);
@@ -77,8 +70,7 @@ public class DreamveilAPI {
     }
 
     /**
-     * Require service availability (convenience method)
-     * Throws exception if API is not available
+     * Throws IllegalStateException if the API is not available.
      */
     public static void requireAvailable() throws IllegalStateException {
         if (!isAvailable()) {
@@ -87,56 +79,48 @@ public class DreamveilAPI {
         }
     }
 
-    // ==================== SETTER METHODS (INTERNAL - called by DreamveilCore) ====================
+    // ==================== SETTER METHODS (INTERNAL) ====================
 
-    /**
-     * Set player service (INTERNAL - called only by DreamveilCore)
-     *
-     * @param service The player service implementation
-     */
     public static void setPlayerService(IPlayerService service) {
         playerService = service;
         Log.info("API: Player service registered");
     }
 
-    /**
-     * Set economy service (INTERNAL - called only by DreamveilCore)
-     *
-     * @param service The economy service implementation
-     */
     public static void setEconomyService(IEconomyService service) {
         economyService = service;
         Log.info("API: Economy service registered");
     }
 
-    /**
-     * Set activity service (INTERNAL - called only by DreamveilCore)
-     *
-     * @param service The activity service implementation
-     */
     public static void setActivityService(IActivityService service) {
         activityService = service;
         Log.info("API: Activity service registered");
     }
 
-    /**
-     * Set rank service (INTERNAL - called only by DreamveilCore)
-     *
-     * @param service The rank service implementation
-     */
     public static void setRankService(IRankService service) {
         rankService = service;
         Log.info("API: Rank service registered");
     }
 
+    public static void setSettingsService(ISettingsService service) {
+        settingsService = service;
+        Log.info("API: Settings service registered");
+    }
+
+    public static void setTitleService(ITitleService service) {
+        titleService = service;
+        Log.info("API: Title service registered");
+    }
+
     /**
-     * Reset all services (INTERNAL - called by DreamveilCore on disable)
+     * Reset all services (INTERNAL – called by DreamveilCore on disable).
      */
     public static void reset() {
-        playerService = null;
-        economyService = null;
+        playerService   = null;
+        economyService  = null;
         activityService = null;
-        rankService = null;
+        rankService     = null;
+        settingsService = null;
+        titleService    = null;
         Log.info("API: Services reset");
     }
 }

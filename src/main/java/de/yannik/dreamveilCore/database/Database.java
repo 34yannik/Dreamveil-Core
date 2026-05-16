@@ -133,7 +133,27 @@ public class Database {
                             ")",
 
                     /* ==================== */
-                    /*     RANK LOGS        */
+                    /*       SETTINGS       */
+                    /* ==================== */
+                    "CREATE TABLE IF NOT EXISTS player_settings (" +
+                            "uuid VARCHAR(36) PRIMARY KEY," +
+                            "pronouns VARCHAR(32) DEFAULT ''," +
+                            "show_pronouns BOOLEAN DEFAULT TRUE," +
+                            "selected_title VARCHAR(64) DEFAULT NULL" +
+                            ")",
+
+                    /* ==================== */
+                    /*        TITLES        */
+                    /* ==================== */
+                    "CREATE TABLE IF NOT EXISTS player_titles (" +
+                            "uuid VARCHAR(36) NOT NULL," +
+                            "title VARCHAR(64) NOT NULL," +
+                            "unlocked_at DATETIME DEFAULT CURRENT_TIMESTAMP," +
+                            "PRIMARY KEY (uuid, title)" +
+                            ")",
+
+                    /* ==================== */
+                    /*      RANK LOGS       */
                     /* ==================== */
                     "CREATE TABLE IF NOT EXISTS rank_logs (" +
                             "id INT AUTO_INCREMENT PRIMARY KEY, " +
