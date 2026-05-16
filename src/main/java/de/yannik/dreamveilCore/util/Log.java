@@ -15,14 +15,14 @@ public class Log {
     }
 
     public static void info(String msg) {
-        logger.info("[" + pluginName + "] " + msg);
+        logger.info(msg);
     }
 
     public static void warn(String msg) {
-        logger.warning("[" + pluginName + "] " + msg);
+        logger.warning(msg);
     }
 
     public static void error(String msg) {
-        logger.severe("[" + pluginName + "] " + msg);
+        logger.severe(msg);
     }
 }

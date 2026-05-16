@@ -6,6 +6,11 @@ package de.yannik.dreamveilCore.rank.permission;
  */
 public enum Permission {
 
+    // ==================== PLAYER ====================
+    WILD_COOLDOWN_BYPASS("dreamveil.wild.bypass", "Bypass the cooldown for wild command"),
+    FEED_COMMAND("dreamveil.feed", "Can use the feed command"),
+    FEED_COOLDOWN_BYPASS("dreamveil.feed.bypass", "Bypass the cooldown for feed command"),
+
     // ==================== TEAMLER ====================
     TEAMLER_CHAT("dreamveil.teamler.chat", "Can use teamchat"),
     TEAMLER_DUTY("dreamveil.teamler.duty", "Join team duty"),
@@ -25,6 +30,7 @@ public enum Permission {
     TEAMLER_CLEARCHAT("dreamveil.teamler.clearchat", "Can clear the server chat"),
     TEAMLER_FREEZE("dreamveil.teamler.freeze", "Can freeze and unfreeze players"),
     TEAMLER_STAFFLIST("dreamveil.teamler.stafflist", "Can view the staff list"),
+    TEAMLER_WORLD("dreamveil.teamler.world", "Can teleport through worlds"),
 
     // ==================== ADMIN COMMANDS ====================
     ADMIN_CLEARINVENTORY("dreamveil.admin.clearinventory", "Can clear player inventories"),

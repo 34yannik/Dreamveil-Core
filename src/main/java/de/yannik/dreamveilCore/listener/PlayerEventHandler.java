@@ -31,6 +31,7 @@ public class PlayerEventHandler implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         String uuid = player.getUniqueId().toString();
+        event.setJoinMessage(null);
 
         // Load player data asynchronously (or create if new)
         PlayerService.getOrLoadAsync(uuid, playerData -> {
@@ -59,6 +60,7 @@ public class PlayerEventHandler implements Listener {
     public void onPlayerQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         String uuid = player.getUniqueId().toString();
+        event.setQuitMessage(null);
 
         playtimeTask.onPlayerQuit(uuid);
 

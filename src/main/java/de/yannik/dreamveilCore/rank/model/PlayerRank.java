@@ -1,15 +1,15 @@
 package de.yannik.dreamveilCore.rank.model;
 
 import de.yannik.dreamveilCore.rank.permission.Permission;
-import org.bukkit.ChatColor;
+import net.md_5.bungee.api.ChatColor;
 
 public enum PlayerRank {
 
     PLAYER(
             "Player",
             0,
-            ChatColor.GRAY,
-            ChatColor.GRAY,
+            ChatColor.of("#AAAAAA"), // Hellgrau
+            ChatColor.of("#AAAAAA"), // Dunkleres Grau
             new Permission[] {
             }
     ),
@@ -17,8 +17,8 @@ public enum PlayerRank {
     VIP(
             "VIP",
             1,
-            ChatColor.GRAY,
-            ChatColor.GRAY,
+            ChatColor.of("#FFF56B"), // Goldgelb
+            ChatColor.of("#FFB700"), // Orange-Gold
             new Permission[] {
             }
     ),
@@ -26,8 +26,8 @@ public enum PlayerRank {
     HELPER(
             "Helper",
             700,
-            ChatColor.AQUA,
-            ChatColor.BLUE,
+            ChatColor.of("#55FFFF"), // Cyan
+            ChatColor.of("#0066FF"), // Blau
             new Permission[] {
                     // Team
                     Permission.TEAMLER_CHAT,
@@ -51,8 +51,8 @@ public enum PlayerRank {
     MODERATOR(
             "Moderator",
             800,
-            ChatColor.GOLD,
-            ChatColor.RED,
+            ChatColor.of("#FFAA00"), // Orange
+            ChatColor.of("#FF3333"), // Rot
             new Permission[] {
                     // Team
                     Permission.TEAMLER_CHAT,
@@ -84,8 +84,8 @@ public enum PlayerRank {
     DEVELOPER(
             "Developer",
             900,
-            ChatColor.LIGHT_PURPLE,
-            ChatColor.DARK_PURPLE,
+            ChatColor.of("#FF55FF"), // Pink
+            ChatColor.of("#8000FF"), // Lila
             new Permission[] {
                     // Team
                     Permission.TEAMLER_CHAT,
@@ -119,8 +119,8 @@ public enum PlayerRank {
     ADMIN(
             "Admin",
             1000,
-            ChatColor.DARK_RED,
-            ChatColor.RED,
+            ChatColor.of("#FF9ED2"), // Pastel Pink
+            ChatColor.of("#FF5FA2"), // Stärkeres Pink
             new Permission[] {
                     Permission.ALL_PERMISSIONS,
                     Permission.RANK_GIVE,
