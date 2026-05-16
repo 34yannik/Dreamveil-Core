@@ -1,8 +1,11 @@
 package de.yannik.dreamveilCore.listener;
 
+import de.yannik.dreamveilCore.DreamveilCore;
+import de.yannik.dreamveilCore.event.PlayerReadyEvent;
 import de.yannik.dreamveilCore.player.service.ActivityService;
 import de.yannik.dreamveilCore.player.service.PlayerService;
 import de.yannik.dreamveilCore.player.task.PlaytimeTask;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -17,9 +20,11 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class PlayerEventHandler implements Listener {
 
     private final PlaytimeTask playtimeTask;
+    private final DreamveilCore plugin;
 
-    public PlayerEventHandler(PlaytimeTask playtimeTask) {
+    public PlayerEventHandler(PlaytimeTask playtimeTask, DreamveilCore plugin) {
         this.playtimeTask = playtimeTask;
+        this.plugin = plugin;
     }
 
     /**
@@ -47,6 +52,10 @@ public class PlayerEventHandler implements Listener {
                     // Callback: streak updated
                 });
             }
+
+            Bukkit.getScheduler().runTask(plugin, () -> {
+                Bukkit.getPluginManager().callEvent(new PlayerReadyEvent(player));
+            });
         });
 
     }
