@@ -4,27 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88571a91-f3d2-4b3a-9758-a12e18fbf8d4" name="Changes" comment="Added: Permissions for Wild, Feed Command">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/service/ISettingsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/service/ITitleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/service/impl/SettingsServiceAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/service/impl/TitleServiceAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/repository/SettingsRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/repository/TitleRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/event/PlayerReadyEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/player/cache/SettingsCache.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/player/model/PlayerSettings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/player/model/Title.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/player/service/SettingsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/player/service/TitleService.java" afterDir="false" />
+    <list default="true" id="88571a91-f3d2-4b3a-9758-a12e18fbf8d4" name="Changes" comment="Added: PlayerReadyEvent to ensure that the data is loaded correctly before player plays">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/DreamveilCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/DreamveilCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/DreamveilAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/DreamveilAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/listener/PlayerEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/listener/PlayerEventHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/rank/permission/Permission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/rank/permission/Permission.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/rank/service/RankService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/rank/service/RankService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/rank/util/GradientUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/util/GradientUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +132,23 @@
       <option name="project" value="LOCAL" />
       <updated>1778935818270</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added: Settings table with API and Service&#10;Added: Title table with API and Service">
+      <option name="closed" value="true" />
+      <created>1778960124817</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1778960124817</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added: PlayerReadyEvent to ensure that the data is loaded correctly before player plays">
+      <option name="closed" value="true" />
+      <created>1778960151589</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1778960151589</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -158,6 +156,8 @@
     <MESSAGE value="Added: Bunch of permissions for admin plugin&#10;change: permissions of ranks" />
     <MESSAGE value="Fix: RankService.hasPermission works correctly" />
     <MESSAGE value="Added: Permissions for Wild, Feed Command" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added: Permissions for Wild, Feed Command" />
+    <MESSAGE value="Added: Settings table with API and Service&#10;Added: Title table with API and Service" />
+    <MESSAGE value="Added: PlayerReadyEvent to ensure that the data is loaded correctly before player plays" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added: PlayerReadyEvent to ensure that the data is loaded correctly before player plays" />
   </component>
 </project>

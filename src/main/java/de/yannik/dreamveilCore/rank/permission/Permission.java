@@ -10,6 +10,7 @@ public enum Permission {
     WILD_COOLDOWN_BYPASS("dreamveil.wild.bypass", "Bypass the cooldown for wild command"),
     FEED_COMMAND("dreamveil.feed", "Can use the feed command"),
     FEED_COOLDOWN_BYPASS("dreamveil.feed.bypass", "Bypass the cooldown for feed command"),
+    MYSIZE_COMMAND("dreamveil.mysize", "Can use the mysize command"),
 
     // ==================== TEAMLER ====================
     TEAMLER_CHAT("dreamveil.teamler.chat", "Can use teamchat"),
@@ -41,6 +42,8 @@ public enum Permission {
     RANK_REMOVE("dreamveil.rank.remove", "Can remove normal ranks"),
     RANK_TEAM_GIVE("dreamveil.teamrank.give", "Can give team ranks"),
     RANK_TEAM_REMOVE("dreamveil.teamrank.remove", "Can remove team ranks"),
+    TITLE_GIVE("dreamveil.title.give", "Can give titles"),
+    TITLE_REMOVE("dreamveil.title.give", "Can give titles"),
     ALL_PERMISSIONS("dreamveil.*", "All permissions"),
 
     // ==================== OTHER ====================
