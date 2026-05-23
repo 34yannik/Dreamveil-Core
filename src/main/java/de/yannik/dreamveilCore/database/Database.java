@@ -7,6 +7,8 @@ import de.yannik.dreamveilCore.util.Log;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -77,7 +79,6 @@ public class Database {
     }
 
     public void initializeDatabase() throws SQLException {
-
         Log.info("Initializing database tables...");
 
         try (Connection connection = getConnection();
@@ -85,11 +86,9 @@ public class Database {
 
             connection.setAutoCommit(false);
 
-            String[] playerTables = {
+            String[] tables = {
 
-                    /* ==================== */
-                    /*        CORE          */
-                    /* ==================== */
+                    /* ── CORE ─────────────────────────────────────────────────── */
                     "CREATE TABLE IF NOT EXISTS player_core (" +
                             "uuid VARCHAR(36) PRIMARY KEY, " +
                             "username VARCHAR(16) NOT NULL, " +
@@ -98,18 +97,14 @@ public class Database {
                             "last_logout DATETIME" +
                             ")",
 
-                    /* ==================== */
-                    /*      ECONOMY         */
-                    /* ==================== */
+                    /* ── ECONOMY ──────────────────────────────────────────────── */
                     "CREATE TABLE IF NOT EXISTS player_economy (" +
                             "uuid VARCHAR(36) PRIMARY KEY, " +
                             "balance BIGINT DEFAULT 250, " +
                             "shards BIGINT DEFAULT 0" +
                             ")",
 
-                    /* ==================== */
-                    /*      ACTIVITY        */
-                    /* ==================== */
+                    /* ── ACTIVITY ─────────────────────────────────────────────── */
                     "CREATE TABLE IF NOT EXISTS player_activity (" +
                             "uuid VARCHAR(36) PRIMARY KEY, " +
                             "playtime BIGINT DEFAULT 0, " +
@@ -117,9 +112,7 @@ public class Database {
                             "longest_streak INT DEFAULT 0" +
                             ")",
 
-                    /* ==================== */
-                    /*        RANKS         */
-                    /* ==================== */
+                    /* ── RANKS ────────────────────────────────────────────────── */
                     "CREATE TABLE IF NOT EXISTS player_ranks (" +
                             "id INT AUTO_INCREMENT PRIMARY KEY, " +
                             "uuid VARCHAR(36) NOT NULL, " +
@@ -132,19 +125,17 @@ public class Database {
                             "INDEX idx_expires (expires_at)" +
                             ")",
 
-                    /* ==================== */
-                    /*       SETTINGS       */
-                    /* ==================== */
+                    /* ── SETTINGS  (includes color columns from start) ─────────── */
                     "CREATE TABLE IF NOT EXISTS player_settings (" +
                             "uuid VARCHAR(36) PRIMARY KEY," +
                             "pronouns VARCHAR(32) DEFAULT ''," +
                             "show_pronouns BOOLEAN DEFAULT TRUE," +
-                            "selected_title VARCHAR(64) DEFAULT NULL" +
+                            "selected_title VARCHAR(64) DEFAULT NULL," +
+                            "chat_msg_color VARCHAR(64)  DEFAULT NULL," +
+                            "chat_name_color VARCHAR(64) DEFAULT NULL" +
                             ")",
 
-                    /* ==================== */
-                    /*        TITLES        */
-                    /* ==================== */
+                    /* ── TITLES ───────────────────────────────────────────────── */
                     "CREATE TABLE IF NOT EXISTS player_titles (" +
                             "uuid VARCHAR(36) NOT NULL," +
                             "title VARCHAR(64) NOT NULL," +
@@ -152,9 +143,7 @@ public class Database {
                             "PRIMARY KEY (uuid, title)" +
                             ")",
 
-                    /* ==================== */
-                    /*      RANK LOGS       */
-                    /* ==================== */
+                    /* ── RANK LOGS ────────────────────────────────────────────── */
                     "CREATE TABLE IF NOT EXISTS rank_logs (" +
                             "id INT AUTO_INCREMENT PRIMARY KEY, " +
                             "uuid VARCHAR(36) NOT NULL, " +
@@ -166,17 +155,73 @@ public class Database {
                             "logged_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, " +
                             "INDEX idx_uuid (uuid), " +
                             "INDEX idx_logged_at (logged_at)" +
+                            ")",
+
+                    /* ── UNLOCKED COLORS ──────────────────────────────────────── */
+                    "CREATE TABLE IF NOT EXISTS player_unlocked_colors (" +
+                            "uuid VARCHAR(36) NOT NULL," +
+                            "color_id VARCHAR(64) NOT NULL," +
+                            "unlocked_at DATETIME DEFAULT CURRENT_TIMESTAMP," +
+                            "PRIMARY KEY (uuid, color_id)," +
+                            "INDEX idx_uc_uuid (uuid)" +
+                            ")",
+
+                    /* ── FAMILIES ─────────────────────────────────────────────── */
+                    "CREATE TABLE IF NOT EXISTS families (" +
+                            "id VARCHAR(36) PRIMARY KEY," +
+                            "name VARCHAR(32) NOT NULL," +
+                            "owner_uuid VARCHAR(36) NOT NULL," +
+                            "description VARCHAR(256) DEFAULT NULL," +
+                            "created_at DATETIME DEFAULT CURRENT_TIMESTAMP," +
+                            "UNIQUE KEY unique_family_name (name)," +
+                            "INDEX idx_fam_owner (owner_uuid)" +
+                            ")",
+
+                    /* ── FAMILY MEMBERS ───────────────────────────────────────── */
+                    "CREATE TABLE IF NOT EXISTS family_members (" +
+                            "family_id VARCHAR(36) NOT NULL," +
+                            "player_uuid VARCHAR(36) NOT NULL," +
+                            "player_name VARCHAR(16) NOT NULL," +
+                            "role VARCHAR(16) NOT NULL DEFAULT 'MEMBER'," +
+                            "joined_at DATETIME DEFAULT CURRENT_TIMESTAMP," +
+                            "PRIMARY KEY (family_id, player_uuid)," +
+                            "INDEX idx_fm_player (player_uuid)" +
+                            ")",
+
+                    /* ── FAMILY HOME ──────────────────────────────────────────── */
+                    "CREATE TABLE IF NOT EXISTS family_home (" +
+                            "family_id VARCHAR(36) PRIMARY KEY," +
+                            "world VARCHAR(64) NOT NULL," +
+                            "x DOUBLE NOT NULL," +
+                            "y DOUBLE NOT NULL," +
+                            "z DOUBLE NOT NULL," +
+                            "yaw FLOAT DEFAULT 0," +
+                            "pitch FLOAT DEFAULT 0," +
+                            "set_by VARCHAR(36) NOT NULL," +
+                            "set_at DATETIME DEFAULT CURRENT_TIMESTAMP" +
+                            ")",
+
+                    /* ── FAMILY BUFFS ─────────────────────────────────────────── */
+                    "CREATE TABLE IF NOT EXISTS family_buffs (" +
+                            "id INT AUTO_INCREMENT PRIMARY KEY," +
+                            "family_id VARCHAR(36) NOT NULL," +
+                            "buff_type VARCHAR(32) NOT NULL," +
+                            "level INT NOT NULL DEFAULT 1," +
+                            "expires_at DATETIME NULL," +
+                            "activated_by VARCHAR(36) NOT NULL," +
+                            "activated_at DATETIME DEFAULT CURRENT_TIMESTAMP," +
+                            "INDEX idx_fb_family (family_id)," +
+                            "INDEX idx_fb_expires (expires_at)" +
                             ")"
             };
 
-            for (String query : playerTables) {
+            for (String query : tables) {
                 statement.addBatch(query);
             }
 
             int[] results = statement.executeBatch();
             connection.commit();
-
-            Log.info("Database initialized successfully (" + results.length + " tables executed).");
+            Log.info("Tables created/verified (" + results.length + " statements).");
 
         } catch (SQLException e) {
             Log.error("Database initialization failed: " + e.getMessage());
@@ -185,6 +230,59 @@ public class Database {
             try (Connection c = getConnection()) {
                 c.setAutoCommit(true);
             }
+        }
+
+        // Run migrations for pre-existing installations
+        runMigrations();
+    }
+
+    /**
+     * Applies schema migrations for servers upgrading from an older version.
+     * Each migration is idempotent: it checks whether the change is needed
+     * before applying it.
+     */
+    private void runMigrations() {
+        Log.info("Running schema migrations...");
+
+        // Migration 1: Add color columns to player_settings
+        migrateAddColumn("player_settings", "chat_msg_color",
+                "ALTER TABLE player_settings ADD COLUMN chat_msg_color VARCHAR(64) DEFAULT NULL");
+        migrateAddColumn("player_settings", "chat_name_color",
+                "ALTER TABLE player_settings ADD COLUMN chat_name_color VARCHAR(64) DEFAULT NULL");
+
+        Log.info("Schema migrations complete.");
+    }
+
+    /**
+     * Add a column to a table only if it does not already exist.
+     * Uses INFORMATION_SCHEMA for a reliable, version-independent check.
+     */
+    private void migrateAddColumn(String table, String column, String alterSql) {
+        String checkSql = """
+                SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS
+                WHERE TABLE_SCHEMA = DATABASE()
+                  AND TABLE_NAME   = ?
+                  AND COLUMN_NAME  = ?
+                """;
+
+        try (Connection conn = getConnection();
+             PreparedStatement check = conn.prepareStatement(checkSql)) {
+
+            check.setString(1, table);
+            check.setString(2, column);
+            try (ResultSet rs = check.executeQuery()) {
+                if (rs.next() && rs.getInt(1) > 0) {
+                    return; // column already exists
+                }
+            }
+
+            try (Statement alter = conn.createStatement()) {
+                alter.executeUpdate(alterSql);
+                Log.info("Migration: added column '" + column + "' to '" + table + "'.");
+            }
+
+        } catch (SQLException e) {
+            Log.error("Migration failed (" + table + "." + column + "): " + e.getMessage());
         }
     }
 }
