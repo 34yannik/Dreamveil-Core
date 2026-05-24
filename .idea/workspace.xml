@@ -4,25 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88571a91-f3d2-4b3a-9758-a12e18fbf8d4" name="Changes" comment="Added: PlayerReadyEvent to ensure that the data is loaded correctly before player plays">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/service/IColorService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/service/IFamilyService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/service/impl/ColorServiceAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/repository/ColorRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/repository/FamilyRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/family/model/Family.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/family/model/FamilyActiveBuff.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/family/model/FamilyBuff.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/family/model/FamilyHome.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/family/model/FamilyMember.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/family/model/FamilyRole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/family/service/FamilyService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/player/cache/ColorCache.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/player/model/PlayerColor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/player/service/ColorService.java" afterDir="false" />
+    <list default="true" id="88571a91-f3d2-4b3a-9758-a12e18fbf8d4" name="Changes" comment="Added: Family Base integration - DB, API and Service&#10;Added: Chat Name/Msg Color integration - DB, API and Service">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/repository/SettingsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/repository/SettingsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/player/model/PlayerSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/player/model/PlayerSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/DreamveilCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/DreamveilCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/DreamveilAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/DreamveilAPI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778960151589</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added: Family Base integration - DB, API and Service&#10;Added: Chat Name/Msg Color integration - DB, API and Service">
+      <option name="closed" value="true" />
+      <created>1779572549099</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1779572549099</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -174,6 +167,7 @@
     <MESSAGE value="Added: Permissions for Wild, Feed Command" />
     <MESSAGE value="Added: Settings table with API and Service&#10;Added: Title table with API and Service" />
     <MESSAGE value="Added: PlayerReadyEvent to ensure that the data is loaded correctly before player plays" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added: PlayerReadyEvent to ensure that the data is loaded correctly before player plays" />
+    <MESSAGE value="Added: Family Base integration - DB, API and Service&#10;Added: Chat Name/Msg Color integration - DB, API and Service" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added: Family Base integration - DB, API and Service&#10;Added: Chat Name/Msg Color integration - DB, API and Service" />
   </component>
 </project>

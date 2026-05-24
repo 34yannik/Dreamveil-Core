@@ -1,11 +1,6 @@
 package de.yannik.dreamveilCore.api;
 
-import de.yannik.dreamveilCore.api.service.IActivityService;
-import de.yannik.dreamveilCore.api.service.IEconomyService;
-import de.yannik.dreamveilCore.api.service.IPlayerService;
-import de.yannik.dreamveilCore.api.service.IRankService;
-import de.yannik.dreamveilCore.api.service.ISettingsService;
-import de.yannik.dreamveilCore.api.service.ITitleService;
+import de.yannik.dreamveilCore.api.service.*;
 import de.yannik.dreamveilCore.util.Log;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -21,9 +16,14 @@ import org.bukkit.plugin.Plugin;
  *         economy.addBalanceAsync(uuid, 100, () -> {});
  *     }
  *
- *     ITitleService titles = DreamveilAPI.getTitles();
- *     if (titles != null) {
- *         titles.unlockAsync(uuid, Title.LEGEND, () -> {});
+ *     IColorService colors = DreamveilAPI.getColors();
+ *     if (colors != null) {
+ *         colors.unlockColorAsync(uuid, PlayerColor.OCEAN, () -> {});
+ *     }
+ *
+ *     IFamilyService families = DreamveilAPI.getFamilies();
+ *     if (families != null) {
+ *         families.loadFamilyByPlayerAsync(uuid, family -> { ... });
  *     }
  * </pre>
  *
@@ -38,48 +38,49 @@ public class DreamveilAPI {
     private static IRankService     rankService;
     private static ISettingsService settingsService;
     private static ITitleService    titleService;
+    private static IColorService    colorService;
+    private static IFamilyService   familyService;
 
     private static final String PLUGIN_NAME = "DreamveilCore";
 
-    // ==================== GETTER METHODS (Public) ====================
+    // ── Getters (Public) ──────────────────────────────────────────────────────
 
     /** Returns null if DreamveilCore is not loaded or disabled. */
-    public static IPlayerService getPlayer()     { return playerService;   }
-
+    public static IPlayerService   getPlayer()   { return playerService;   }
     /** Returns null if DreamveilCore is not loaded or disabled. */
-    public static IEconomyService getEconomy()   { return economyService;  }
-
+    public static IEconomyService  getEconomy()  { return economyService;  }
     /** Returns null if DreamveilCore is not loaded or disabled. */
     public static IActivityService getActivity() { return activityService; }
-
     /** Returns null if DreamveilCore is not loaded or disabled. */
-    public static IRankService getRank()         { return rankService;     }
-
+    public static IRankService     getRank()     { return rankService;     }
     /** Returns null if DreamveilCore is not loaded or disabled. */
     public static ISettingsService getSettings() { return settingsService; }
-
     /** Returns null if DreamveilCore is not loaded or disabled. */
-    public static ITitleService getTitles()      { return titleService;    }
+    public static ITitleService    getTitles()   { return titleService;    }
+    /** Returns null if DreamveilCore is not loaded or disabled. */
+    public static IColorService    getColors()   { return colorService;    }
+    /** Returns null if DreamveilCore is not loaded or disabled. */
+    public static IFamilyService   getFamilies() { return familyService;   }
 
-    /**
-     * Check if DreamveilCore is loaded and API is available.
-     */
+    // ── Availability ──────────────────────────────────────────────────────────
+
+    /** Check if DreamveilCore is loaded and API is available. */
     public static boolean isAvailable() {
         Plugin plugin = Bukkit.getPluginManager().getPlugin(PLUGIN_NAME);
         return plugin != null && plugin.isEnabled() && playerService != null;
     }
 
-    /**
-     * Throws IllegalStateException if the API is not available.
-     */
-    public static void requireAvailable() throws IllegalStateException {
+    /** Throws {@link IllegalStateException} if the API is not available. */
+    public static void requireAvailable() {
         if (!isAvailable()) {
-            throw new IllegalStateException("DreamveilCore API is not available. " +
-                    "Make sure DreamveilCore is installed, enabled, and listed in plugin.yml as a dependency.");
+            throw new IllegalStateException(
+                    "DreamveilCore API is not available. " +
+                    "Make sure DreamveilCore is installed, enabled, and listed " +
+                    "in plugin.yml as a dependency.");
         }
     }
 
-    // ==================== SETTER METHODS (INTERNAL) ====================
+    // ── Setters (Internal) ────────────────────────────────────────────────────
 
     public static void setPlayerService(IPlayerService service) {
         playerService = service;
@@ -111,6 +112,16 @@ public class DreamveilAPI {
         Log.info("API: Title service registered");
     }
 
+    public static void setColorService(IColorService service) {
+        colorService = service;
+        Log.info("API: Color service registered");
+    }
+
+    public static void setFamilyService(IFamilyService service) {
+        familyService = service;
+        Log.info("API: Family service registered");
+    }
+
     /**
      * Reset all services (INTERNAL – called by DreamveilCore on disable).
      */
@@ -121,6 +132,8 @@ public class DreamveilAPI {
         rankService     = null;
         settingsService = null;
         titleService    = null;
-        Log.info("API: Services reset");
+        colorService    = null;
+        familyService   = null;
+        Log.info("API: All services reset");
     }
 }
