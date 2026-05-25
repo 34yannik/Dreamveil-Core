@@ -113,8 +113,17 @@ public class FamilyService {
      *   – Family name must be unique.
      */
     public static void createFamilyAsync(String ownerUuid, String ownerName,
-                                         String name, String description,
+                                         String name, String tag, String description,
                                          Consumer<String> callback) {
+        // Validate tag before hitting the DB
+        try {
+            Family.validateTag(tag);
+        } catch (IllegalArgumentException e) {
+            Log.warn("FamilyService: invalid tag '" + tag + "': " + e.getMessage());
+            callback.accept(null);
+            return;
+        }
+
         DatabaseExecutor.runAsync(() -> {
             try {
                 // Guard: already in a family
@@ -129,8 +138,14 @@ public class FamilyService {
                     callback.accept(null);
                     return;
                 }
+                // Guard: tag taken
+                if (repository.tagExists(tag)) {
+                    Log.warn("FamilyService: family tag '" + tag + "' is already taken.");
+                    callback.accept(null);
+                    return;
+                }
 
-                String familyId = repository.createFamily(ownerUuid, ownerName, name, description);
+                String familyId = repository.createFamily(ownerUuid, ownerName, name, tag, description);
 
                 // Prime cache
                 Family family = repository.getFamilyById(familyId);
@@ -138,9 +153,9 @@ public class FamilyService {
                     familyCache.put(familyId, family);
                     playerFamily.put(ownerUuid, familyId);
                 }
-                memberCache.remove(familyId); // force reload on next access
+                memberCache.remove(familyId);
 
-                Log.info("FamilyService: family '" + name + "' created by " + ownerUuid);
+                Log.info("FamilyService: family '" + name + "' [" + tag.toUpperCase() + "] created by " + ownerUuid);
                 callback.accept(familyId);
             } catch (Exception e) {
                 Log.error("FamilyService: failed to create family: " + e.getMessage());

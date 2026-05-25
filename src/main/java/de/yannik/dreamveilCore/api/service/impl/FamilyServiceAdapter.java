@@ -31,9 +31,9 @@ public class FamilyServiceAdapter implements IFamilyService {
 
     @Override
     public void createFamilyAsync(String ownerUuid, String ownerName,
-                                  String name, String description,
+                                  String name, String tag, String description,
                                   Consumer<String> callback) {
-        FamilyService.createFamilyAsync(ownerUuid, ownerName, name, description, callback);
+        FamilyService.createFamilyAsync(ownerUuid, ownerName, name, tag, description, callback);
     }
 
     @Override

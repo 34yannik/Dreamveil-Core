@@ -170,10 +170,12 @@ public class Database {
                     "CREATE TABLE IF NOT EXISTS families (" +
                             "id VARCHAR(36) PRIMARY KEY," +
                             "name VARCHAR(32) NOT NULL," +
+                            "tag VARCHAR(5) NOT NULL," +
                             "owner_uuid VARCHAR(36) NOT NULL," +
                             "description VARCHAR(256) DEFAULT NULL," +
                             "created_at DATETIME DEFAULT CURRENT_TIMESTAMP," +
                             "UNIQUE KEY unique_family_name (name)," +
+                            "UNIQUE KEY unique_family_tag (tag)," +
                             "INDEX idx_fam_owner (owner_uuid)" +
                             ")",
 
@@ -250,6 +252,12 @@ public class Database {
         migrateAddColumn("player_settings", "chat_name_color",
                 "ALTER TABLE player_settings ADD COLUMN chat_name_color VARCHAR(64) DEFAULT NULL");
 
+        // Migration 2: Add tag column to families
+        migrateAddColumn("families", "tag",
+                "ALTER TABLE families ADD COLUMN tag VARCHAR(5) NOT NULL DEFAULT 'N/A' AFTER name");
+        migrateAddUniqueIndex("families", "unique_family_tag",
+                "ALTER TABLE families ADD UNIQUE KEY unique_family_tag (tag)");
+
         Log.info("Schema migrations complete.");
     }
 
@@ -271,9 +279,7 @@ public class Database {
             check.setString(1, table);
             check.setString(2, column);
             try (ResultSet rs = check.executeQuery()) {
-                if (rs.next() && rs.getInt(1) > 0) {
-                    return; // column already exists
-                }
+                if (rs.next() && rs.getInt(1) > 0) return;
             }
 
             try (Statement alter = conn.createStatement()) {
@@ -283,6 +289,33 @@ public class Database {
 
         } catch (SQLException e) {
             Log.error("Migration failed (" + table + "." + column + "): " + e.getMessage());
+        }
+    }
+
+    private void migrateAddUniqueIndex(String table, String indexName, String alterSql) {
+        String checkSql = """
+                SELECT COUNT(*) FROM INFORMATION_SCHEMA.STATISTICS
+                WHERE TABLE_SCHEMA = DATABASE()
+                  AND TABLE_NAME   = ?
+                  AND INDEX_NAME   = ?
+                """;
+
+        try (Connection conn = getConnection();
+             PreparedStatement check = conn.prepareStatement(checkSql)) {
+
+            check.setString(1, table);
+            check.setString(2, indexName);
+            try (ResultSet rs = check.executeQuery()) {
+                if (rs.next() && rs.getInt(1) > 0) return;
+            }
+
+            try (Statement alter = conn.createStatement()) {
+                alter.executeUpdate(alterSql);
+                Log.info("Migration: added unique index '" + indexName + "' on '" + table + "'.");
+            }
+
+        } catch (SQLException e) {
+            Log.error("Migration failed (index " + indexName + " on " + table + "): " + e.getMessage());
         }
     }
 }

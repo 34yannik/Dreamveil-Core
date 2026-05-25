@@ -28,7 +28,7 @@ public class FamilyRepository {
      */
     public Family getFamilyById(String familyId) throws SQLException {
         String sql = """
-                SELECT f.id, f.name, f.owner_uuid, f.description, f.created_at,
+                SELECT f.id, f.name, f.tag, f.owner_uuid, f.description, f.created_at,
                        COUNT(m.player_uuid) AS member_count
                 FROM families f
                 LEFT JOIN family_members m ON m.family_id = f.id
@@ -52,7 +52,7 @@ public class FamilyRepository {
      */
     public Family getFamilyByPlayer(String playerUuid) throws SQLException {
         String sql = """
-                SELECT f.id, f.name, f.owner_uuid, f.description, f.created_at,
+                SELECT f.id, f.name, f.tag, f.owner_uuid, f.description, f.created_at,
                        COUNT(m2.player_uuid) AS member_count
                 FROM family_members m
                 JOIN families f ON f.id = m.family_id
@@ -78,12 +78,12 @@ public class FamilyRepository {
      * @return The ID of the newly created family.
      */
     public String createFamily(String ownerUuid, String ownerName,
-                               String name, String description) throws SQLException {
+                               String name, String tag, String description) throws SQLException {
         String familyId = UUID.randomUUID().toString();
 
         String familySql = """
-                INSERT INTO families (id, name, owner_uuid, description, created_at)
-                VALUES (?, ?, ?, ?, NOW())
+                INSERT INTO families (id, name, tag, owner_uuid, description, created_at)
+                VALUES (?, ?, ?, ?, ?, NOW())
                 """;
 
         try (Connection conn = Database.getConnection();
@@ -91,8 +91,9 @@ public class FamilyRepository {
 
             stmt.setString(1, familyId);
             stmt.setString(2, name);
-            stmt.setString(3, ownerUuid);
-            stmt.setString(4, description);
+            stmt.setString(3, tag.toUpperCase());
+            stmt.setString(4, ownerUuid);
+            stmt.setString(5, description);
             stmt.executeUpdate();
         }
 
@@ -124,14 +125,27 @@ public class FamilyRepository {
     /**
      * Update name and/or description.
      */
-    public void updateFamily(String familyId, String newName, String newDescription) throws SQLException {
-        String sql = "UPDATE families SET name = ?, description = ? WHERE id = ?";
+    public void updateFamily(String familyId, String newName, String newTag, String newDescription) throws SQLException {
+        String sql = "UPDATE families SET name = ?, tag = ?, description = ? WHERE id = ?";
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, newName);
-            stmt.setString(2, newDescription);
-            stmt.setString(3, familyId);
+            stmt.setString(2, newTag.toUpperCase());
+            stmt.setString(3, newDescription);
+            stmt.setString(4, familyId);
             stmt.executeUpdate();
+        }
+    }
+
+    /** True if a family with this tag already exists (case-insensitive). */
+    public boolean tagExists(String tag) throws SQLException {
+        String sql = "SELECT 1 FROM families WHERE UPPER(tag) = UPPER(?) LIMIT 1";
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, tag);
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next();
+            }
         }
     }
 
@@ -425,6 +439,7 @@ public class FamilyRepository {
         return new Family(
                 rs.getString("id"),
                 rs.getString("name"),
+                rs.getString("tag"),
                 rs.getString("owner_uuid"),
                 rs.getString("description"),
                 rs.getTimestamp("created_at") != null

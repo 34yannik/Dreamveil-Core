@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88571a91-f3d2-4b3a-9758-a12e18fbf8d4" name="Changes" comment="Added: Family Base integration - DB, API and Service&#10;Added: Chat Name/Msg Color integration - DB, API and Service">
+    <list default="true" id="88571a91-f3d2-4b3a-9758-a12e18fbf8d4" name="Changes" comment="Change: Implemented api changes into DreamveilAPI &amp; DreamveilCore">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/DreamveilCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/DreamveilCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/DreamveilAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/DreamveilAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/service/IFamilyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/service/IFamilyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/service/impl/FamilyServiceAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/service/impl/FamilyServiceAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/repository/FamilyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/repository/FamilyRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/family/model/Family.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/family/model/Family.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/family/service/FamilyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/family/service/FamilyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/player/model/PlayerColor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/player/model/PlayerColor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +162,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779572549099</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Change: Implemented api changes into DreamveilAPI &amp; DreamveilCore">
+      <option name="closed" value="true" />
+      <created>1779617593633</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1779617593633</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -168,6 +181,7 @@
     <MESSAGE value="Added: Settings table with API and Service&#10;Added: Title table with API and Service" />
     <MESSAGE value="Added: PlayerReadyEvent to ensure that the data is loaded correctly before player plays" />
     <MESSAGE value="Added: Family Base integration - DB, API and Service&#10;Added: Chat Name/Msg Color integration - DB, API and Service" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added: Family Base integration - DB, API and Service&#10;Added: Chat Name/Msg Color integration - DB, API and Service" />
+    <MESSAGE value="Change: Implemented api changes into DreamveilAPI &amp; DreamveilCore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change: Implemented api changes into DreamveilAPI &amp; DreamveilCore" />
   </component>
 </project>

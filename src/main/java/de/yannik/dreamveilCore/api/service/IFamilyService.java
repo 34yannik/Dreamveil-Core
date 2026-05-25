@@ -45,11 +45,14 @@ public interface IFamilyService {
      * Guards (enforced asynchronously):
      *   – Owner must not already be in a family.
      *   – Family name must be unique.
+     *   – Tag must be unique, 1–5 alphanumeric characters.
+     *     Validated synchronously before the DB call; callback receives null on rejection.
      *
+     * @param tag      Short identifier, max 5 chars, alphanumeric, stored uppercase
      * @param callback Receives the new family ID on success, null on rejection/error.
      */
     void createFamilyAsync(String ownerUuid, String ownerName,
-                           String name, String description,
+                           String name, String tag, String description,
                            Consumer<String> callback);
 
     /**
