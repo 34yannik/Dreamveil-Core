@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88571a91-f3d2-4b3a-9758-a12e18fbf8d4" name="Changes" comment="Change: Implemented api changes into DreamveilAPI &amp; DreamveilCore">
+    <list default="true" id="88571a91-f3d2-4b3a-9758-a12e18fbf8d4" name="Changes" comment="Change: Added Tags to familys">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/service/IFamilyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/service/IFamilyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/service/impl/FamilyServiceAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/api/service/impl/FamilyServiceAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/repository/FamilyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/database/repository/FamilyRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/family/model/Family.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/family/model/Family.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/family/service/FamilyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/family/service/FamilyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/player/model/PlayerColor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/player/model/PlayerColor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/player/service/ColorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/yannik/dreamveilCore/player/service/ColorService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779617593633</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Change: Added Tags to familys">
+      <option name="closed" value="true" />
+      <created>1779734702598</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1779734702598</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -182,6 +184,7 @@
     <MESSAGE value="Added: PlayerReadyEvent to ensure that the data is loaded correctly before player plays" />
     <MESSAGE value="Added: Family Base integration - DB, API and Service&#10;Added: Chat Name/Msg Color integration - DB, API and Service" />
     <MESSAGE value="Change: Implemented api changes into DreamveilAPI &amp; DreamveilCore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change: Implemented api changes into DreamveilAPI &amp; DreamveilCore" />
+    <MESSAGE value="Change: Added Tags to familys" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change: Added Tags to familys" />
   </component>
 </project>

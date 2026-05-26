@@ -164,6 +164,53 @@ public class FamilyRepository {
     }
 
     /**
+     * Find a family by its name (case-insensitive), including member count.
+     * Returns null if not found.
+     */
+    public Family getFamilyByName(String name) throws SQLException {
+        String sql = """
+                SELECT f.id, f.name, f.tag, f.owner_uuid, f.description, f.created_at,
+                       COUNT(m.player_uuid) AS member_count
+                FROM families f
+                LEFT JOIN family_members m ON m.family_id = f.id
+                WHERE LOWER(f.name) = LOWER(?)
+                GROUP BY f.id
+                """;
+
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, name);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) return mapFamily(rs);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Load all families, ordered by creation date descending.
+     * Used by the family browser GUI.
+     */
+    public List<Family> getAllFamilies() throws SQLException {
+        String sql = """
+                SELECT f.id, f.name, f.tag, f.owner_uuid, f.description, f.created_at,
+                       COUNT(m.player_uuid) AS member_count
+                FROM families f
+                LEFT JOIN family_members m ON m.family_id = f.id
+                GROUP BY f.id
+                ORDER BY f.created_at DESC
+                """;
+
+        List<Family> result = new ArrayList<>();
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) result.add(mapFamily(rs));
+        }
+        return result;
+    }
+
+    /**
      * True if a family with this name already exists (case-insensitive).
      */
     public boolean nameExists(String name) throws SQLException {

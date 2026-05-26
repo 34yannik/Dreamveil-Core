@@ -36,6 +36,37 @@ public class FamilyService {
     // ──────────────────────────────────────────────────────────────────────────
 
     /**
+     * Find a family by name asynchronously. Callback receives null if not found.
+     */
+    public static void loadFamilyByNameAsync(String name, Consumer<Family> callback) {
+        DatabaseExecutor.runAsync(() -> {
+            try {
+                Family family = repository.getFamilyByName(name);
+                if (family != null) familyCache.put(family.getId(), family);
+                callback.accept(family);
+            } catch (Exception e) {
+                Log.error("FamilyService: failed to load family by name '" + name + "': " + e.getMessage());
+                callback.accept(null);
+            }
+        });
+    }
+
+    /**
+     * Load all families for the browser GUI (always fresh, not cached).
+     */
+    public static void getAllFamiliesAsync(Consumer<List<Family>> callback) {
+        DatabaseExecutor.runAsync(() -> {
+            try {
+                List<Family> families = repository.getAllFamilies();
+                callback.accept(families);
+            } catch (Exception e) {
+                Log.error("FamilyService: failed to load all families: " + e.getMessage());
+                callback.accept(List.of());
+            }
+        });
+    }
+
+    /**
      * Load the family of a player asynchronously (with caching).
      * Callback receives null if the player has no family.
      */

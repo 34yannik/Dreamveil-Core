@@ -11,6 +11,12 @@ import java.util.function.Consumer;
  */
 public interface IFamilyService {
 
+    /** Find a family by its display name (case-insensitive). Callback receives null if not found. */
+    void loadFamilyByNameAsync(String name, Consumer<Family> callback);
+
+    /** Load all families – used by the browser GUI. Always fetches fresh data. */
+    void getAllFamiliesAsync(Consumer<List<Family>> callback);
+
     // ── Lookup ────────────────────────────────────────────────────────────────
 
     /**

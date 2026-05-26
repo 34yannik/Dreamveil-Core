@@ -10,6 +10,16 @@ import java.util.function.Consumer;
 public class FamilyServiceAdapter implements IFamilyService {
 
     @Override
+    public void loadFamilyByNameAsync(String name, Consumer<Family> callback) {
+        FamilyService.loadFamilyByNameAsync(name, callback);
+    }
+
+    @Override
+    public void getAllFamiliesAsync(Consumer<List<Family>> callback) {
+        FamilyService.getAllFamiliesAsync(callback);
+    }
+
+    @Override
     public void loadFamilyByPlayerAsync(String playerUuid, Consumer<Family> callback) {
         FamilyService.loadFamilyByPlayerAsync(playerUuid, callback);
     }

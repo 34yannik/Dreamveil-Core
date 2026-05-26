@@ -51,10 +51,6 @@ public class ColorService {
 
                 Set<PlayerColor> allUnlocked = new LinkedHashSet<>();
 
-                // Always include free colors
-                for (PlayerColor c : PlayerColor.values()) {
-                    if (c.isFree()) allUnlocked.add(c);
-                }
                 allUnlocked.addAll(dbColors);
 
                 ColorCache.put(uuid, allUnlocked);
@@ -71,7 +67,6 @@ public class ColorService {
      * Returns false on cache miss – call {@link #loadUnlockedColorsAsync} first on login.
      */
     public static boolean isColorUnlocked(String uuid, PlayerColor color) {
-        if (color.isFree()) return true;
         return ColorCache.hasColor(uuid, color);
     }
 
@@ -80,11 +75,6 @@ public class ColorService {
      * Prefer synchronous version for online players (always cached).
      */
     public static void isColorUnlockedAsync(String uuid, PlayerColor color, Consumer<Boolean> callback) {
-        if (color.isFree()) {
-            callback.accept(true);
-            return;
-        }
-
         // Fast path: cache hit
         if (ColorCache.isCached(uuid)) {
             callback.accept(ColorCache.hasColor(uuid, color));
